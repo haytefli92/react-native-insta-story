@@ -93,13 +93,25 @@ export default class CubeNavigationHorizontal extends React.Component {
     });
   }
 
+  static getDerivedStateFromProps(props, state) {
+  if (props.scrollLockPage !== state.scrollLockPage) {
+    return {
+      scrollLockPage: props.scrollLockPage
+        ? this.pages[props.scrollLockPage]
+        : undefined
+    };
+  }
+  return null;
+}
+  
+  /*
   UNSAFE_componentWillReceiveProps(props) {
     this.setState({
       scrollLockPage: props.scrollLockPage
         ? this.pages[props.scrollLockPage]
         : undefined,
     });
-  }
+  }*/
 
   /*
       @page: index
