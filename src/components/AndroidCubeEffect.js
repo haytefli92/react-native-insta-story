@@ -101,13 +101,25 @@ export default class AndroidCubeEffect extends React.Component {
     };
   }
 
+  /*
   UNSAFE_componentWillReceiveProps(props) {
     this.setState({
       scrollLockPage: props.scrollLockPage
         ? this.pages[props.scrollLockPage]
         : undefined,
     });
+  }*/
+  
+  static getDerivedStateFromProps(props, state) {
+  if (props.scrollLockPage !== state.scrollLockPage) {
+    return {
+      scrollLockPage: props.scrollLockPage
+        ? this.pages[props.scrollLockPage]
+        : undefined
+    };
   }
+  return null;
+}
 
   /*
       @page: index
